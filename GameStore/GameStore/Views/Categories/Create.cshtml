@@ -1,0 +1,44 @@
+﻿@model Category
+<h1 class="alert alert-warning">Create Category</h1>
+<form class="col-4" method="post" asp-action="AddNew" asp-controller="Categories" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div>
+        <label asp-for="ImagePath"></label>
+        <input type="file" name="imageFormFile" id="imageFormFile" accept=".png,.jpg,.jpeg" class="form-control" onchange="AddImage()" />
+       
+        <span asp-validation-for="ImagePath"></span>
+    </div>
+
+        <div>
+            <label asp-for="Name"></label>
+        <input type="text" asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+    <div>
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"> </textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+ 
+    <button type="submit" class="btn btn-warning mt-2">
+        Add
+    </button>
+
+</form>
+<div class="col-4">
+    <img src="" id="catImage" class="card" style="width:100%; aspect-ratio:1/1" />
+</div>
+<a asp-controller="Categories" asp-action="GetIndexView" class="btn btn-success mt-2"> <i class="bi bi-arrow-left-circle" ></i>Back To List</a>
+<br />
+<br />
+
+           @section Scripts{
+            <script>
+                function AddImage() {
+            document.getElementById('catImage').src = window.URL.createObjectURL(document.getElementById('imageFormFile').files[0]);
+
+      
+                }
+            </script>
+           }

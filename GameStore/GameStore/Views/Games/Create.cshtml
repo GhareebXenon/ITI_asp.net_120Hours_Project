@@ -1,0 +1,72 @@
+﻿@model Game
+<h1 class="alert alert-warning">Create a Game Page</h1>
+<form class="col-4" method="post" asp-action="AddNew" asp-controller="Games" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div>
+        <label asp-for="ImagePath"></label>
+        <input type="file" name="imageFormFile" id="imageFormFile" accept=".png,.jpg,.jpeg" class="form-control" onchange="AddImage()" />
+
+        <span asp-validation-for="ImagePath"></span>
+    </div>
+        <div>
+            <label asp-for="Name"></label>
+        <input type="text" asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+    <div>
+        <label asp-for="About"></label>
+        <textarea asp-for="About" class="form-control"> </textarea>
+        <span asp-validation-for="About" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Price"></label>
+        <input type="number" asp-for="Price" class="form-control"/> 
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="ReleaseDate"></label>
+        <input type="date" asp-for="ReleaseDate" class="form-control"/> 
+        <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="CategoryId"></label>
+       <select class="form-control" asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.AllCategories,"Id","Name"))">
+           <option selected disabled>
+               Select...
+       </option></select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="DeveloperId"></label>
+        <select class="form-control" asp-for="DeveloperId" asp-items="@(new SelectList(ViewBag.AllDevelopers,"Id","Name"))">
+            <option selected disabled>
+                Select...
+            </option>
+        </select>
+        <span asp-validation-for="DeveloperId" class="text-danger"></span>
+    </div>
+
+
+
+ 
+    <button type="submit" class="btn btn-warning mt-2">
+        Add
+    </button>
+
+</form>
+<div class="col-4">
+    <img src="" id="gameImage" class="card" style="width:100%; aspect-ratio:1/1" />
+</div>
+<a asp-controller="Games" asp-action="GetIndexView" class="btn btn-success mt-2"> <i class="bi bi-arrow-left-circle" ></i>Back To List</a>
+<br />
+<br />
+@section Scripts{
+    <script>
+        function AddImage() {
+            document.getElementById('gameImage').src = window.URL.createObjectURL(document.getElementById('imageFormFile').files[0]);
+
+
+        }
+    </script>
+           }

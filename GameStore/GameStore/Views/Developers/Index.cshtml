@@ -1,0 +1,146 @@
+﻿@model IEnumerable<Developer>
+<h1>
+    Developers Page
+</h1>
+<a asp-action="GetCreateView" asp-controller="Developers" class="btn btn-success mb-2">New Developer </a>
+<div class="row mb-2">
+    <form method="get" class="col-4 mb-2">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control" value="@ViewBag.CurrentSearch" />
+            <input type="hidden" name="pageSize" value="@ViewBag.PageSize" />
+            <input type="hidden" name="pageNumber" value="@ViewBag.PageNumber" />
+            <button type="submit" class="btn btn-secondary input-group-append"><i class="bi bi-search"></i>   </button>
+
+        </div>
+    </form>
+    <form method="get" asp-controller="Developers" asp-action="GetIndexView" class="col-4">
+        <input type="hidden" name="search" value="@ViewBag.CurrentSearch" />
+
+
+        <div class="input-group">
+
+            <input type="number" name="pageSize" id="pageSize" title="Page Size" value="@ViewBag.PageSize" class="text-center col-2" />
+            <input type="number" name="pageNumber" id="pageNumber" title="page Number" value="@ViewBag.PageNumber" class="text-center" />
+            <button type="submit" class="btn btn-secondary input-group-append col-1"><i class="bi bi-file-earmark"> </i> </button>
+        </div>
+    </form>
+</div>
+@if (Model.Count() > 0)
+{
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <td class="active">
+                    @Html.DisplayNameFor(c=>c.ImagePath)
+                </td>
+                <td class="active">
+                    <div style="width:50%;float:left;text-align:left">@Html.DisplayNameFor(e=>e.Name)</div>
+                    <div style="width:50%;float:right;text-align:right">
+                        <a asp-controller="Developers"
+                           asp-action="GetIndexView"
+                           asp-route-sortType="Name"
+                           asp-route-sortOrder="asc"
+                           asp-route-search="@ViewBag.CurrentSearch"
+                           asp-route-pageSize="@ViewBag.PageSize"
+                           asp-route-pageNumber="@ViewBag.PageNumber"
+                           style="text-decoration:none">
+                            <i class="bi bi-arrow-up"></i>
+                        </a>
+                        <a asp-controller="Developers"
+                           asp-action="GetIndexView"
+                           asp-route-sortType="Name"
+                           asp-route-sortOrder="desc"
+                           asp-route-search="@ViewBag.CurrentSearch"
+                           asp-route-pageSize="@ViewBag.PageSize"
+                           asp-route-pageNumber="@ViewBag.PageNumber"
+                           style="text-decoration:none">
+                            <i class="bi bi-arrow-down"></i>
+                        </a>
+                </td>
+                <td class="active">
+                    <div style="width:50%;float:left;text-align:left">@Html.DisplayNameFor(e=>e.About)</div>
+                    <div style="width:50%;float:right;text-align:right">
+                        <a asp-controller="Developers"
+                           asp-action="GetIndexView"
+                           asp-route-sortType="About"
+                           asp-route-sortOrder="asc"
+                           asp-route-search="@ViewBag.CurrentSearch"
+                           asp-route-pageSize="@ViewBag.PageSize"
+                           asp-route-pageNumber="@ViewBag.PageNumber"
+                           style="text-decoration:none">
+                            <i class="bi bi-arrow-up"></i>
+                        </a>
+                        <a asp-controller="Developers"
+                           asp-action="GetIndexView"
+                           asp-route-sortType="About"
+                           asp-route-sortOrder="desc"
+                           asp-route-search="@ViewBag.CurrentSearch"
+                           asp-route-pageSize="@ViewBag.PageSize"
+                           asp-route-pageNumber="@ViewBag.PageNumber"
+                           style="text-decoration:none">
+                            <i class="bi bi-arrow-down"></i>
+                        </a>
+                </td>
+                <td class="active"> Configuration </td>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var dev in Model)
+            {
+                <tr>
+                    <td>
+                        <div style="width:100%; height:100%">
+                            <img src="@dev.ImagePath" style="width:15rem; height:15rem; border-radius:50%; " />
+                        </div>
+                    </td>
+                    <td>@Html.DisplayFor(c=>dev.Name) </td>
+                    <td>@Html.DisplayFor(c=>dev.About) </td>
+                    <td class="col-2">
+
+                        <a asp-action="GetDetailsView" title="Details" asp-controller="Developers" asp-route-id="@dev.Id"><i class="bi bi-list-columns-reverse btn btn-outline-info"></i></a>
+
+                        <a asp-action="GetEditView" title="Edit" asp-controller="Developers" asp-route-id="@dev.Id"><i class="bi bi-pencil-square btn btn-outline-success"></i></a>
+
+                        <a asp-action="GetDeleteView" title="Delete" asp-controller="Developers" asp-route-id="@dev.Id"><i class="bi bi-trash btn btn-outline-danger "></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td> </td>
+                <td> </td>
+                <td>  </td>
+                <td>  </td>
+
+            </tr>
+
+        </tfoot>
+    </table>
+
+}
+else
+{
+    <h1 class="alert alert-danger">There is No Data</h1>
+}
+
+<div class="parent d-flex justify-content-start align-items-stretch" style="gap:20px;">
+    @foreach (var dev in Model)
+    {
+        <div class="card  mb-3 text-center " style=" width:18rem;">
+            <img src="@dev.ImagePath" class="card-img-top" style="width:100%; aspect-ratio:1/1" />
+            <div class="card-header">
+                @dev.Name
+            </div>
+            <div class="card-body">
+                @dev.About
+            </div>
+            <div class="card-footer">
+            </div>
+        </div>
+    }
+</div>
+
+

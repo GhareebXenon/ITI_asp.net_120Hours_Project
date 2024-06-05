@@ -1,0 +1,38 @@
+﻿@{
+    Category category = (Category)ViewBag.CurrentCategory;
+}
+<div>
+
+<dl class="row">
+    <dt class="col-2">@Html.DisplayNameFor(e=>category.Id)</dt>
+    <dd class="col-10">@Html.DisplayFor(e=>category.Id)</dd>
+    <dt class="col-2">@Html.DisplayNameFor(e=>category.Name)</dt>
+    <dd class="col-10">@Html.DisplayFor(e=>category.Name)</dd>
+    <dt class="col-2">@Html.DisplayNameFor(e=>category.Description)</dt>
+    <dd class="col-10">@Html.DisplayFor(e=>category.Description)</dd>
+
+
+
+</dl>
+<img src="@category.ImagePath" id="catImage" class="col-6 card" />
+
+</div>
+
+@if (category.Games.Count() > 0 && category.Games != null)
+{
+    <ul class="list-group col-4">
+        <li class="list-group-item active">Games   </li>
+        @foreach (var item in category.Games)
+        {
+            <a asp-controller="Games" asp-action="GetDetailsView" asp-route-Id="@item.Id" style="text-decoration:none">
+            <li class="list-group-item list-group-item-action">
+                    @item.Name (@item.ReleaseDate)
+            </li>
+            </a>
+        }
+    </ul>
+}
+else
+{
+    <h1 class="alert alert-danger">There is no Games</h1>
+}

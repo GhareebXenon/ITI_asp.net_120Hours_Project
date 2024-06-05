@@ -1,0 +1,32 @@
+﻿@{
+
+    Game game = (Game)ViewBag.CurrentGame;
+}
+<div>
+<dl class="row">
+    <dt class="col-2">@Html.DisplayNameFor(e=>game.Id)</dt>
+    <dd class="col-10">@Html.DisplayFor(e=>game.Id)</dd>
+    <dt class="col-2">@Html.DisplayNameFor(e=>game.Name)</dt>
+    <dd class="col-10">@Html.DisplayFor(e=>game.Name)</dd>
+    <dt class="col-2">@Html.DisplayNameFor(e=>game.About)</dt>
+    <dd class="col-10">@Html.DisplayFor(e=>game.About)</dd>
+    <dt class="col-2">@Html.DisplayNameFor(e=>game.Price)</dt>
+    <dd class="col-10">@Html.DisplayFor(e=>game.Price)</dd>
+    <dt class="col-2">@Html.DisplayNameFor(e=>game.ReleaseDate)</dt>
+    <dd class="col-10">@Html.DisplayFor(e=>game.ReleaseDate)</dd>
+    <dt class="col-2">@Html.DisplayNameFor(e=>game.DeveloperId)</dt>
+    <dd class="col-10">
+        <a asp-controller="Developers" asp-action="GetDetailsView" asp-route-id="@game.DeveloperId">
+            @Html.DisplayFor(e=>game.Developer.Name)
+        </a>
+    </dd>
+    <dt class="col-2">@Html.DisplayNameFor(e=>game.CategoryId)</dt>
+    <dd class="col-10">
+     <a asp-controller="Categories" asp-action="GetDetailsView" asp-route-id="@game.CategoryId">
+            @Html.DisplayFor(e=>game.Category.Name)
+     </a>   
+        </dd>
+
+</dl>
+<img src="@game.ImagePath" id="gameImage" class="col-6 card" />
+</div>

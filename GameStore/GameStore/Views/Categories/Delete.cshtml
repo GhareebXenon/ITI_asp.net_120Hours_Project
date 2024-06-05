@@ -1,0 +1,12 @@
+﻿@model Category
+
+<h1 class="alert alert-danger justify-content-center">Are You Sure You Want To Delete It </h1>
+
+
+<form method="post" asp-action="DeleteCurrent" asp-controller="Categories">
+    <input type="hidden" asp-for="Id" />
+    <partial name="_CatData" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+<a asp-controller="Categories" asp-action="GetIndexView" class="btn btn-success mt-2"> <i class="bi bi-arrow-left-circle"></i>Back To List</a>
+<br />

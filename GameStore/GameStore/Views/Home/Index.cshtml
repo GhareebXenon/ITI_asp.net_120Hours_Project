@@ -1,0 +1,42 @@
+﻿
+<h1 class="alert alert-dark text-center">Welceome to The GameStore</h1>
+<br />
+<hr />
+
+<h2 class="alert alert-success text-center">For You</h2>
+
+<div class="d-flex justify-content-center "style="gap: 1rem">
+<div class="card  mb-2" style="display:inline-block;width:32rem">
+     
+        <div class="card-body" >
+            <img class="card-img-bottom" style="width:100%; aspect-ratio:1/1" src="~/images/TopCategory.png" />
+        </div>
+        <div class="card-footer">
+         
+        <a asp-controller="Categories" asp-action="GetIndexView"><div class="btn btn-secondary" style="display:block; width:100%">Top Categories</div></a>
+           
+        </div>
+    </div>
+    <div class="card  mb-2" style="display:inline-block;width:32rem">
+    <div class="card-body">
+            <img class="card-img-bottom" style="width:100%; aspect-ratio:1/1" src="~/images/TopGames.png" />
+    </div>
+    <div class="card-footer">
+
+        <a asp-controller="Games" asp-action="GetIndexView"><div class="btn btn-secondary" style="display:block; width:100%">Top Games</div></a>
+
+
+    </div>
+  </div>
+    <div class="card  mb-2" style="display:inline-block;width:32rem">
+        <div class="card-body">
+            <img class="card-img-bottom" style="width:100%; aspect-ratio:1/1" src="~/images/GamingCompanies.jpg" />
+        </div>
+        <div class="card-footer">
+
+            <a asp-controller="Developers" asp-action="GetIndexView"><div class="btn btn-secondary" style="display:block; width:100%">Top Developers</div></a>
+
+
+        </div>
+    </div>
+    </div>
